@@ -1,10 +1,11 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class="col-sm-9 col-md-9 col-lg-9 pull-left">
+    <div class="col-sm-9 col-md-9 col-lg-9 pull-left" style="background-color:white">
             
         <!-- Example row of columns -->
-        <div class="row col-sm-12 col-md-12 col-lg-12" style="background-color:white; margin:10px">
+        <div class="row col-sm-12 col-md-12 col-lg-12">
+        <h1>Create new company</h1>
         <form method="post" action="{{ route('companies.store') }}">
                         {{ csrf_field() }}
 

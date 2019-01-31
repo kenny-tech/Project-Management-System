@@ -1,36 +1,39 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class="col-sm-9 col-md-9 col-lg-9 pull-left">
+    <div class="col-sm-9 col-md-9 col-lg-9 pull-left" style="background-color:white">
             
         <!-- Example row of columns -->
         <div class="row col-sm-12 col-md-12 col-lg-12">
-        <h1>Update company</h1>
-        <form method="post" action="{{ route('companies.update', [$company->id]) }}">
+        <h1>Create new project</h1>
+        <form method="post" action="{{ route('projects.store') }}">
                         {{ csrf_field() }}
 
-                        <input type="hidden" name="_method" value="put">
                         <div class="form-group">
-                            <label for="company-name">Name<span class="required">*</span></label>
+                            <label for="project-name">Name<span class="required">*</span></label>
                             <input  placeholder="Enter name"
-                                    id="company-name"
+                                    id="project-name"
                                     required
                                     name="name"
                                     spellcheck="false"
-                                    class="form-control"
-                                    value="{{ $company->name }}">
+                                    class="form-control">
                         </div>
 
+                        <input
+                                    name="project_id"
+                                    type="hidden"
+                                    value={{ $project_id }}/>
+
                         <div class="form-group">
-                            <label for="company-content">Description<span class="required">*</span></label>
+                            <label for="project-content">Description<span class="required">*</span></label>
                             <textarea   placeholder="Enter description"
                                         style="resize: vertical"
-                                        id="company-content"
+                                        id="project-content"
                                         name="description"
                                         rows="5"
                                         spellcheck="false"
                                         class="form-control autosize-target text-left">
-                                        {{ $company->description }}</textarea>
+                            </textarea>
                         </div>
 
                         <div class="form-group">
@@ -49,8 +52,7 @@
           <div class="sidebar-module">
             <h4>Actions</h4>
             <ol class="list-unstyled">
-              <li><a href="/companies/{{ $company->id }}">View companies</a></li>
-              <li><a href="/companies">All companies</a></li>
+              <li><a href="/projects">My projects</a></li>
             </ol>
           </div>
 
