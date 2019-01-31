@@ -5,7 +5,7 @@
             <!-- The justified navigation menu is meant for single line per list item.
                 Multiple lines will require custom code not provided by Bootstrap. -->
             <!-- Jumbotron -->
-            <div class="jumbotron">
+            <div class="well well-lg">
                 <h1>{{ $project->name }}</h1>
                 <p class="lead">{{ $project->description }}</p>
                 <!-- <p><a class="btn btn-lg btn-success" href="#" role="button">Get started today</a></p> -->
@@ -33,9 +33,10 @@
             <h4>Actions</h4>
             <ol class="list-unstyled">
               <li><a href="/projects/{{ $project->id }}/edit">Edit</a></li>
-              <li><a href="/projects/create//{{ $project->id }}">Add Project</a></li>
-              <li><a href="/projects">My projects</a></li>
               <li><a href="/projects/create">Create New project</a></li>
+              <li><a href="/projects">My projects</a></li>
+              
+              @if($project->user_id == Auth::user()->id)
               <li>  
                 <br/>            
                 <a href="#"
@@ -54,6 +55,8 @@
                     {{ csrf_field() }}
                 </form>
               </li>
+              @endif
+              
             </ol>
           </div>
 
