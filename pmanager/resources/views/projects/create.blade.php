@@ -20,7 +20,7 @@
                         </div>
 
                         <input
-                                    name="project_id"
+                                    name="company_id"
                                     type="hidden"
                                     value={{ $project_id }}/>
 
