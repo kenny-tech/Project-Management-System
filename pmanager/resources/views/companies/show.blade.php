@@ -32,7 +32,11 @@
             <h4>Actions</h4>
             <ol class="list-unstyled">
               <li><a href="/companies/{{ $company->id }}/edit">Edit</a></li>
-              <li>              
+              <li><a href="/projects/create">Add Project</a></li>
+              <li><a href="/companies">My Companies</a></li>
+              <li><a href="/companies/create">Create New Company</a></li>
+              <li>  
+                <br/>            
                 <a href="#"
                     onclick="
                     var result = confirm('Are you sure you want to delete this Company?');
