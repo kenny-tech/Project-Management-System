@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Project;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class ProjectsController extends Controller
 {
@@ -71,7 +72,7 @@ class ProjectsController extends Controller
         //
         //$Project = Project::where('id', $Project->id)->first();
         $project = Project::find($project->id);
-        return view('projects.show', ['Project' => $project]);
+        return view('projects.show', ['project' => $project]);
     }
 
     /**

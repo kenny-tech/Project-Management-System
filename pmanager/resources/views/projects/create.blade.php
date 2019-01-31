@@ -22,7 +22,7 @@
                         <input
                                     name="company_id"
                                     type="hidden"
-                                    value={{ $project_id }}/>
+                                    value={{ $company_id }}/>
 
                         <div class="form-group">
                             <label for="project-content">Description<span class="required">*</span></label>
