@@ -18,12 +18,15 @@
                                     spellcheck="false"
                                     class="form-control">
                         </div>
-
+                        
+                        @if($companies == null)
                         <input
+                                    class="form-control"
                                     name="company_id"
                                     type="hidden"
                                     value={{ $company_id }}/>
-                        
+                        @endif
+
                         @if($companies != null)
                         <div class="form-group">
                             <label for="company-content">Select company</label>
