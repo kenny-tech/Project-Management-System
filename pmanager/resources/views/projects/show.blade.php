@@ -52,14 +52,6 @@
                     </form>
             </div>
 
-            @foreach($project->comments as $comment)
-                <div class="col-lg-4 col-md-4 col-sm-4">
-                <h2>{{ $comment->body }}</h2>
-                <p class="text-danger">{{ $comment->url }}</p>
-                <p><a class="btn btn-primary" href="/projects/{{ $project->id }}" role="button">View Project »</a></p>
-                </div>
-            @endforeach
-
             <div class="row">
                 <div class="col-md-12 col-sm-12 col-xs-12 col-lg-12">
                 
