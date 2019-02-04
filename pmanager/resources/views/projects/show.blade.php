@@ -89,13 +89,29 @@
               @endif
               
             </ol>
-          </div>
-
-          <!-- <div class="sidebar-module">
-            <h4>Members</h4>
-            <ol class="list-unstyled">
-              <li><a href="#">March 2014</a></li>
-            </ol>
-        </div> -->
+            <hr/>
+            <h4>Add members</h4>
+            <div class="row">
+                <div class="col-lg-12 col-md-12 col-xs-12  col-sm-12 ">
+                    <form id="add-user" action="{{ route('projects.adduser') }}"  method="POST">
+                        {{ csrf_field() }}
+                        <div class="input-group"> 
+                            <input class="form-control" name = "project_id" id="project_id" value="{{$project->id}}" type="hidden">
+                            <input type="text" required class="form-control" id="email"  name = "email" placeholder="Email">
+                            <span class="input-group-btn">
+                                <button class="btn btn-default" type="submit" id="addMember" >Add!</button>
+                            </span>
+                        </div><!-- /input-group -->
+                    </form>
+                </div><!-- /.col-lg-6 -->
+            </div><!-- /.row -->
+            <br/>
+            <h4>Team Members</h4>
+                <ol class="list-unstyled" id="member-list">
+                    <li><a href="#"> Kenny </a> </li>
+                    <li><a href="#"> Juwon </a> </li>
+                </ol>
+                </div>
+            </div>
     </div>
 @endsection
