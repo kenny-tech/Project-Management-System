@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Project;
 use App\Company;
+use App\User;
+use App\ProjectUser;
+
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -23,6 +26,44 @@ class ProjectsController extends Controller
             return view('projects.index', ['projects' => $projects]);    
         }
         return view('auth.login');
+    }
+
+    public function adduser(Request $request)
+    {
+        // take a project, add a user to it
+
+        // get details of the project that has the project id
+        $project = Project::find($request->input('project_id'));
+
+        // checks if logged in user is the one that creates the project
+        if(Auth::user()->id == $project->user_id)
+        {
+            $user = User::where('email', $request->input('email'))->first(); // single record
+
+            // checks if user is already added to the project
+            $projectUser = ProjectUser::where('user_id', $user->id)
+                                        ->where('project_id', $project->id)
+                                        ->first();
+            
+            if($projectUser)
+            {
+                // if user already exists, exit
+                return redirect()->route('projects.show', ['project'=>$project->id])
+                ->with('success', $request->input('email').' is already a member of this project');    
+            }
+
+            if($user && $project)
+            {
+                // attach the user to the project
+                // creates a record in the join table
+                $project->users()->attach($user->id);
+                
+                return redirect()->route('projects.show', ['project'=>$project->id])
+                ->with('success', $request->input('email').' was added to project successfully');    
+            }    
+        }
+        return redirect()->route('projects.show', ['project'=>$project->id])
+        ->with('errors', 'Error adding user to project');
     }
 
     /**
@@ -91,7 +132,7 @@ class ProjectsController extends Controller
     {
         //
         $project = Project::find($project->id);
-        return view('projects.edit', ['Project' => $project]);
+        return view('projects.edit', ['project' => $project]);
     }
 
     /**
@@ -110,7 +151,7 @@ class ProjectsController extends Controller
                                 'description' => $request->input('description')
                             ]);
         if($projectUpdate) {
-            return redirect()->route('projects.show', ['Project'=>$project->id])
+            return redirect()->route('projects.show', ['project'=>$project->id])
                     ->with('success', 'Project updated successfully');
         }
 
