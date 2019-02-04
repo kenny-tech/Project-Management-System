@@ -108,8 +108,10 @@
             <br/>
             <h4>Team Members</h4>
                 <ol class="list-unstyled" id="member-list">
-                    <li><a href="#"> Kenny </a> </li>
-                    <li><a href="#"> Juwon </a> </li>
+                    <!-- loop through project model users method to get project users-->
+                    @foreach($project->users as $user)
+                        <li><a href="#">{{ $user->email }}</a></li>
+                    @endforeach
                 </ol>
                 </div>
             </div>

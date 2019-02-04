@@ -36,13 +36,20 @@ class ProjectsController extends Controller
         // checks if logged in user is the one that creates the project
         if(Auth::user()->id == $project->user_id)
         {
-            $user = User::where('email', $request->input('email'))->get();
+            $user = User::where('email', $request->input('email'))->first(); // single record
             if($user && $project)
             {
                 // attach the user to the project
+                // creates a record in the join table
                 $project->users()->attach($user->id);
+                
+                return redirect()->route('projects.show', ['project'=>$project->id])
+                ->with('success', $request->input('email').' was added to project successfully');    
             }    
         }
+        return redirect()->route('projects.show', ['project'=>$project->id])
+        ->with('errors', 'Error adding user to project');
+
     }
 
     /**
@@ -111,7 +118,7 @@ class ProjectsController extends Controller
     {
         //
         $project = Project::find($project->id);
-        return view('projects.edit', ['Project' => $project]);
+        return view('projects.edit', ['project' => $project]);
     }
 
     /**
@@ -130,7 +137,7 @@ class ProjectsController extends Controller
                                 'description' => $request->input('description')
                             ]);
         if($projectUpdate) {
-            return redirect()->route('projects.show', ['Project'=>$project->id])
+            return redirect()->route('projects.show', ['project'=>$project->id])
                     ->with('success', 'Project updated successfully');
         }
 
