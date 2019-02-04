@@ -96,8 +96,8 @@
                     <form id="add-user" action="{{ route('projects.adduser') }}"  method="POST">
                         {{ csrf_field() }}
                         <div class="input-group"> 
-                            <input class="form-control" name = "project_id" id="project_id" value="{{$project->id}}" type="hidden">
-                            <input type="text" required class="form-control" id="email"  name = "email" placeholder="Email">
+                            <input class="form-control" name="project_id" id="project_id" value="{{$project->id}}" type="hidden">
+                            <input type="text" required class="form-control" id="email"  name="email" placeholder="Email">
                             <span class="input-group-btn">
                                 <button class="btn btn-default" type="submit" id="addMember" >Add!</button>
                             </span>
